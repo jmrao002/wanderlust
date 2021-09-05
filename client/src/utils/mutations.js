@@ -12,8 +12,6 @@ export const LOGIN_USER = gql`
         savedWebcams {
           webcamId
           title
-          description
-          authors
           image
           link
         }
@@ -34,8 +32,6 @@ export const ADD_USER = gql`
         savedWebcams {
           webcamId
           title
-          description
-          authors
           image
           link
         }
@@ -55,8 +51,6 @@ export const SAVE_WEBCAM = gql`
         # _id
         webcamId
         title
-        description
-        authors
         image
         link
       }
@@ -75,8 +69,6 @@ export const REMOVE_WEBCAM = gql`
         # _id
         webcamId
         title
-        description
-        authors
         image
         link
       }

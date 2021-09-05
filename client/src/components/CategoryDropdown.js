@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Container, Dropdown, DropdownButton } from "react-bootstrap";
+require("dotenv").config();
 
 const CategoryDropdown = () => {
   const [loading, setLoading] = React.useState(true);
@@ -15,7 +16,7 @@ const CategoryDropdown = () => {
   React.useEffect(() => {
     async function getWebcamCategories() {
       const response = await fetch(
-        `https://api.windy.com/api/webcams/v2/list?show=categories&key=2LUGQul9yRztrjwRIjsxvu1laj1HUCuq`
+        `https://api.windy.com/api/webcams/v2/list?show=categories&key=${process.env.REACT_APP_API_KEY}`
       );
       const body = await response.json();
       setItems(
