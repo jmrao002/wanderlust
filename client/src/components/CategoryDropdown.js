@@ -16,7 +16,7 @@ const CategoryDropdown = () => {
   React.useEffect(() => {
     async function getWebcamCategories() {
       const response = await fetch(
-        `https://api.windy.com/api/webcams/v2/list?show=categories&key=${process.env.REACT_APP_API_KEY}`
+        `https://api.windy.com/api/webcams/v2/list?show=categories&key=2LUGQul9yRztrjwRIjsxvu1laj1HUCuq`
       );
       const body = await response.json();
       setItems(
