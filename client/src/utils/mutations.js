@@ -8,9 +8,9 @@ export const LOGIN_USER = gql`
         _id
         username
         email
-        bookCount
-        savedBooks {
-          bookId
+        webcamCount
+        savedWebcams {
+          webcamId
           title
           description
           authors
@@ -30,9 +30,9 @@ export const ADD_USER = gql`
         _id
         username
         email
-        bookCount
-        savedBooks {
-          bookId
+        webcamCount
+        savedWebcams {
+          webcamId
           title
           description
           authors
@@ -44,16 +44,16 @@ export const ADD_USER = gql`
   }
 `;
 
-export const SAVE_BOOK = gql`
-  mutation saveBook($input: savedBook!) {
-    saveBook(input: $input) {
+export const SAVE_WEBCAM = gql`
+  mutation saveWebcam($input: savedWebcam!) {
+    saveWebcam(input: $input) {
       _id
       username
       email
-      bookCount
-      savedBooks {
+      webcamCount
+      savedWebcams {
         # _id
-        bookId
+        webcamId
         title
         description
         authors
@@ -64,16 +64,16 @@ export const SAVE_BOOK = gql`
   }
 `;
 
-export const REMOVE_BOOK = gql`
-  mutation removeBook($bookId: ID!) {
-    removeBook(bookId: $bookId) {
+export const REMOVE_WEBCAM = gql`
+  mutation removeWebcam($webcamId: ID!) {
+    removeWebcam(webcamId: $webcamId) {
       _id
       username
       email
-      bookCount
-      savedBooks {
+      webcamCount
+      savedWebcams {
         # _id
-        bookId
+        webcamId
         title
         description
         authors

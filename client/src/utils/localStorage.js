@@ -1,30 +1,32 @@
-export const getSavedBookIds = () => {
-  const savedBookIds = localStorage.getItem('saved_books')
-    ? JSON.parse(localStorage.getItem('saved_books'))
+export const getSavedWebcamIds = () => {
+  const savedWebcamIds = localStorage.getItem("saved_webcams")
+    ? JSON.parse(localStorage.getItem("saved_webcams"))
     : [];
 
-  return savedBookIds;
+  return savedWebcamIds;
 };
 
-export const saveBookIds = (bookIdArr) => {
-  if (bookIdArr.length) {
-    localStorage.setItem('saved_books', JSON.stringify(bookIdArr));
+export const saveWebcamIds = (webcamIdArr) => {
+  if (webcamIdArr.length) {
+    localStorage.setItem("saved_webcams", JSON.stringify(webcamIdArr));
   } else {
-    localStorage.removeItem('saved_books');
+    localStorage.removeItem("saved_webcams");
   }
 };
 
-export const removeBookId = (bookId) => {
-  const savedBookIds = localStorage.getItem('saved_books')
-    ? JSON.parse(localStorage.getItem('saved_books'))
+export const removeWebcamId = (webcamId) => {
+  const savedWebcamIds = localStorage.getItem("saved_webcams")
+    ? JSON.parse(localStorage.getItem("saved_webcams"))
     : null;
 
-  if (!savedBookIds) {
+  if (!savedWebcamIds) {
     return false;
   }
 
-  const updatedSavedBookIds = savedBookIds?.filter((savedBookId) => savedBookId !== bookId);
-  localStorage.setItem('saved_books', JSON.stringify(updatedSavedBookIds));
+  const updatedSavedWebcamIds = savedWebcamIds?.filter(
+    (savedWebcamId) => savedWebcamId !== webcamId
+  );
+  localStorage.setItem("saved_webcams", JSON.stringify(updatedSavedWebcamIds));
 
   return true;
 };

@@ -1,4 +1,4 @@
-const { User, Book } = require("../models");
+const { User, Webcam } = require("../models");
 const { AuthenticationError } = require("apollo-server-express");
 const { signToken } = require("../utils/auth");
 
@@ -11,8 +11,8 @@ const resolvers = {
         // check data saved against the user
         const userData = await User.findOne({})
           .select("-__v -password")
-          .populate("books");
-        // get and return the user's saved books
+          .populate("webcams");
+        // get and return the user's saved webcams
         return userData;
       }
 
@@ -45,13 +45,13 @@ const resolvers = {
       return { token, user };
     },
 
-    saveBook: async (parent, args, context) => {
+    saveWebcam: async (parent, args, context) => {
       if (context.user) {
-        //   const savedBook = await Book.create({ ...args, username: context.user.username });
+        //   const savedWebcam = await Webcam.create({ ...args, username: context.user.username });
 
         const updatedUser = await User.findByIdAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { savedBooks: args.input } },
+          { $addToSet: { savedWebcams: args.input } },
           { new: true }
         );
 
@@ -61,11 +61,11 @@ const resolvers = {
       throw new AuthenticationError("You need to be logged in!");
     },
 
-    removeBook: async (parent, args, context) => {
+    removeWebcam: async (parent, args, context) => {
       if (context.user) {
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { savedBooks: { bookId: args.bookId } } },
+          { $pull: { savedWebcams: { webcamId: args.webcamId } } },
           { new: true }
         );
 
