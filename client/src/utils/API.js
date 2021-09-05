@@ -50,8 +50,7 @@ export const deleteWebcam = (webcamId, token) => {
   });
 };
 
-// make a search to google webcams api
-// https://www.googleapis.com/webcams/v1/volumes?q=harry+potter
-export const searchGoogleWebcams = (query) => {
+// make a search to windy webcams api
+export const searchWindyWebcams = (query) => {
   return fetch(`https://www.googleapis.com/webcams/v1/volumes?q=${query}`);
 };

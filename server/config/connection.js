@@ -2,7 +2,7 @@
 const mongoose = require("mongoose");
 
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/googlewebcams-app",
+  process.env.MONGODB_URI || "mongodb://localhost/wanderlust",
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,

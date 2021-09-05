@@ -14,12 +14,12 @@ import {
 import { SAVE_WEBCAM } from "../utils/mutations";
 import { useMutation } from "@apollo/react-hooks";
 import Auth from "../utils/auth";
-import { saveWebcam, searchGoogleWebcams } from "../utils/API";
+import { saveWebcam, searchWindyWebcams } from "../utils/API";
 import { saveWebcamIds, getSavedWebcamIds } from "../utils/localStorage";
 
 const SearchWebcams = () => {
   const [searchedWebcams, setSearchedWebcams] = useState([]);
-  const [searchInput, setSearchInput] = useState("");
+  const [valueInput, setValueInput] = useState("");
 
   const [savedWebcamIds, setSavedWebcamIds] = useState(getSavedWebcamIds());
 
@@ -33,12 +33,12 @@ const SearchWebcams = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    if (!searchInput) {
+    if (!valueInput) {
       return false;
     }
 
     try {
-      const response = await searchGoogleWebcams(searchInput);
+      const response = await searchWindyWebcams(valueInput);
 
       if (!response.ok) {
         throw new Error("Something went wrong!");
@@ -48,14 +48,13 @@ const SearchWebcams = () => {
 
       const webcamData = items.map((webcam) => ({
         webcamId: webcam.id,
-        authors: webcam.volumeInfo.authors || ["No author to display"],
-        title: webcam.volumeInfo.title,
-        description: webcam.volumeInfo.description,
         image: webcam.volumeInfo.imageLinks?.thumbnail || "",
+        link: webcam.volumeInfo.link,
+        title: webcam.volumeInfo.title,
       }));
 
       setSearchedWebcams(webcamData);
-      setSearchInput("");
+      setValueInput("");
     } catch (err) {
       console.error(err);
     }
@@ -99,18 +98,18 @@ const SearchWebcams = () => {
           <h1>Use the dropdowns to find your scene!</h1>
           {/* Will want to replace with API driven data. Also, use a For/ForEach loop to create more buttons when needed */}
           <Form className="d-flex flex-row" onSubmit={handleFormSubmit}>
-            <div className="d-flex flex-row justify-content-left m-4">
-              <DropdownButton id="dropdown-basic-button" title="Category">
-                <Dropdown.Item href="#/action-1">Mountains</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Beaches</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Cities</Dropdown.Item>
-              </DropdownButton>
-              <DropdownButton id="dropdown-basic-button" title="Country">
-                <Dropdown.Item href="#/action-1">United States</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">France</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Switzerland</Dropdown.Item>
-              </DropdownButton>
-            </div>
+            <DropdownButton
+              alignRight
+              title="Categories"
+              id="dropdown-menu-align-right"
+              onSelect={handleSelect}
+            >
+              <Dropdown.Item eventKey="option-1">Mountains</Dropdown.Item>
+              <Dropdown.Item eventKey="option-2">Beaches</Dropdown.Item>
+              <Dropdown.Item eventKey="option-3">Cities</Dropdown.Item>
+              <Dropdown.Divider />
+              <Dropdown.Item eventKey="some link">some link</Dropdown.Item>
+            </DropdownButton>
             <div className="d-flex flex-row justify-content-right m-4">
               {/* <Form.Row> */}
               {/* <Col xs={12} md={8}>
