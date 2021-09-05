@@ -1,7 +1,7 @@
 import React from "react";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { GET_ME } from "../utils/queries";
-import WebcameiFrame from "../components/WebcamiFrame";
+import WebcamiFrame from "../components/WebcamiFrame";
 
 const ViewWebcam = () => {
   const { loading, data } = useQuery(GET_ME);
@@ -12,7 +12,7 @@ const ViewWebcam = () => {
 
   return (
     <>
-      <WebcameiFrame />
+      <WebcamiFrame />
     </>
   );
 };
