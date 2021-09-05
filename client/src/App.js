@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import SearchWebcams from "./pages/SearchWebcams";
 import SavedWebcams from "./pages/SavedWebcams";
+import ViewWebcam from "./pages/ViewWebcam";
 import Navbar from "./components/Navbar";
 import { ApolloProvider } from "@apollo/react-hooks";
 import ApolloClient from "apollo-boost";
@@ -27,6 +28,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={SearchWebcams} />
           <Route exact path="/saved" component={SavedWebcams} />
+          <Route exact path="/view" component={ViewWebcam} />
           <Route render={() => <h1 className="display-2">Wrong page!</h1>} />
         </Switch>
       </Router>

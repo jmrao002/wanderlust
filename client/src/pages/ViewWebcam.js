@@ -1,27 +1,30 @@
 import React from "react";
-import {
-  Jumbotron,
-  Container,
-} from "react-bootstrap";
-import { saveWebcam, searchGoogleWebcams } from "../utils/API";
-import Auth from "../utils/auth";
+import { Container } from "react-bootstrap";
 
-return (
-  <>
-    <Container>
-      <a
-        name="windy-webcam-timelapse-player"
-        data-id={`${webcamId}`}
-        data-play="month"
-        href={`https://windy.com/webcams/${webcamId}`}
-        target="_blank"
-      ></a>
-      <script>
-        async; type = "text/javascript"; src =
-        "https://webcams.windy.com/webcams/public/embed/script/player.js";
-      </script>
-    </Container>
-  </>
-);
+const ViewWebcam = () => {
+  const { loading, data } = useQuery(GET_ME);
 
-export default ViewWebcams;
+  if (loading) {
+    return <h2>Loading...</h2>;
+  }
+
+  return (
+    <>
+      <Container>
+        <a
+          name="windy-webcam-timelapse-player"
+          data-id={`${webcamId}`}
+          data-play="month"
+          href={`https://windy.com/webcams/${webcamId}`}
+          target="_blank"
+        ></a>
+        <script>
+          async; type = "text/javascript"; src =
+          "https://webcams.windy.com/webcams/public/embed/script/player.js";
+        </script>
+      </Container>
+    </>
+  );
+};
+
+export default ViewWebcam;

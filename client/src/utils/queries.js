@@ -10,9 +10,7 @@ export const GET_ME = gql`
       savedWebcams {
         # _id
         webcamId
-        authors
         title
-        description
         image
         link
       }
