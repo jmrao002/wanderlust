@@ -7,8 +7,6 @@ import {
   Button,
   Card,
   CardColumns,
-  Dropdown,
-  DropdownButton,
 } from "react-bootstrap";
 // import the mutation we're going to execute
 import { SAVE_WEBCAM } from "../utils/mutations";
@@ -16,10 +14,11 @@ import { useMutation } from "@apollo/react-hooks";
 import Auth from "../utils/auth";
 import { saveWebcam, searchWindyWebcams } from "../utils/API";
 import { saveWebcamIds, getSavedWebcamIds } from "../utils/localStorage";
+import CategoryDropdown from "../components/CategoryDropdown";
 
 const SearchWebcams = () => {
   const [searchedWebcams, setSearchedWebcams] = useState([]);
-  const [valueInput, setValueInput] = useState("");
+  const [categoryInput, setCategoryInput] = useState("");
 
   const [savedWebcamIds, setSavedWebcamIds] = useState(getSavedWebcamIds());
 
@@ -33,12 +32,12 @@ const SearchWebcams = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    if (!valueInput) {
+    if (!categoryInput) {
       return false;
     }
 
     try {
-      const response = await searchWindyWebcams(valueInput);
+      const response = await searchWindyWebcams(categoryInput);
 
       if (!response.ok) {
         throw new Error("Something went wrong!");
@@ -54,7 +53,7 @@ const SearchWebcams = () => {
       }));
 
       setSearchedWebcams(webcamData);
-      setValueInput("");
+      setCategoryInput("");
     } catch (err) {
       console.error(err);
     }
@@ -85,65 +84,39 @@ const SearchWebcams = () => {
 
   return (
     <div>
-      <Jumbotron
-        fluid
-        className="text-light bg-image"
-        style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1468581264429-2548ef9eb732'})`,
-          backgroundRepeat: "no-repeat",
-          width: "100%",
-        }}
-      >
+      {/* Need to get a background image or video working here. */}
+      <Jumbotron fluid className="text-dark">
         <Container>
-          <h1>Use the dropdowns to find your scene!</h1>
+          <h1>Use the dropdowns to travel anywhere.</h1>
           {/* Will want to replace with API driven data. Also, use a For/ForEach loop to create more buttons when needed */}
           <Form className="d-flex flex-row" onSubmit={handleFormSubmit}>
-            <DropdownButton
-              alignRight
-              title="Categories"
-              id="dropdown-menu-align-right"
-              onSelect={handleSelect}
-            >
-              <Dropdown.Item eventKey="option-1">Mountains</Dropdown.Item>
-              <Dropdown.Item eventKey="option-2">Beaches</Dropdown.Item>
-              <Dropdown.Item eventKey="option-3">Cities</Dropdown.Item>
-              <Dropdown.Divider />
-              <Dropdown.Item eventKey="some link">some link</Dropdown.Item>
-            </DropdownButton>
-            <div className="d-flex flex-row justify-content-right m-4">
-              {/* <Form.Row> */}
-              {/* <Col xs={12} md={8}>
-                <Form.Control
-                  name="searchInput"
-                  value={searchInput}
-                  onChange={(e) => setSearchInput(e.target.value)}
-                  type="text"
-                  size="lg"
-                  placeholder="Search for a webcam"
-                />
-              </Col> */}
-              <Col xs={12} md={4}>
-                <Button
-                  className="btn btn-outline-light btn-lg text-dark m-2"
-                  type="submit"
-                  variant="light"
-                  size="lg"
-                >
-                  Submit Search
-                </Button>
-              </Col>
-              {/* </Form.Row> */}
-            </div>
+            <Col>
+              {/* Call over to category dropdown component */}
+              <CategoryDropdown />
+            </Col>
+            {/* <Form.Row> */}
+            <Col>
+              <Button
+                className="btn btn-outline-light btn-lg text-dark m-2"
+                type="submit"
+                variant="light"
+                size="lg"
+              >
+                Submit Search
+              </Button>
+            </Col>
+            {/* </Form.Row> */}
           </Form>
         </Container>
       </Jumbotron>
 
       <Container>
-        <h2>
+        {/* Might want to replace with a giphy tutorial? */}
+        {/* <h2>
           {searchedWebcams.length
             ? `Viewing ${searchedWebcams.length} results:`
             : "Search for a webcam to begin"}
-        </h2>
+        </h2> */}
         <CardColumns>
           {searchedWebcams.map((webcam) => {
             return (
