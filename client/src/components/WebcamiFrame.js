@@ -10,10 +10,11 @@ return (
       href={`https://windy.com/webcams/${data}`}
       target="_blank"
     ></a>
-    <script>
-      async; type = "text/javascript"; src =
-      "https://webcams.windy.com/webcams/public/embed/script/player.js";
-    </script>
+    <script
+      async
+      type="text/javascript"
+      src="https://webcams.windy.com/webcams/public/embed/script/player.js"
+    ></script>
   </Container>
 );
 
