@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 // route to get logged in user's info (needs the token)
 export const getMe = (token) => {
   return fetch("/api/users/me", {
@@ -52,5 +54,14 @@ export const deleteWebcam = (webcamId, token) => {
 
 // make a search to windy webcams api
 export const searchWindyWebcams = (query) => {
-  return fetch(`https://www.googleapis.com/webcams/v1/volumes?q=${query}`);
+  let myHeaders = new Headers();
+  myHeaders.append("x-windy-key", `${REACT_APP_API_KEY}`);
+  let requestOptions = {
+    method: "GET",
+    headers: myHeaders,
+    redirect: "follow",
+  };
+  return fetch(
+    `https://api.windy.com/api/webcams/v2/list/category=${query}", ${requestOptions}`
+  );
 };
