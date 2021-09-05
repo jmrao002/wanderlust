@@ -115,7 +115,6 @@ const SignupForm = () => {
             )
           }
           type="submit"
-          variant="success"
         >
           Submit
         </Button>

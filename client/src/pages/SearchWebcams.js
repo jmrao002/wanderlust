@@ -7,6 +7,8 @@ import {
   Button,
   Card,
   CardColumns,
+  Dropdown,
+  DropdownButton,
 } from "react-bootstrap";
 // import the mutation we're going to execute
 import { SAVE_WEBCAM } from "../utils/mutations";
@@ -83,13 +85,35 @@ const SearchWebcams = () => {
   };
 
   return (
-    <>
-      <Jumbotron fluid className="text-light bg-dark">
+    <div>
+      <Jumbotron
+        fluid
+        className="text-light bg-image"
+        style={{
+          backgroundImage: `url('https://images.unsplash.com/photo-1468581264429-2548ef9eb732'})`,
+          backgroundRepeat: "no-repeat",
+          width: "100%",
+        }}
+      >
         <Container>
-          <h1>Search for Webcams!</h1>
-          <Form onSubmit={handleFormSubmit}>
-            <Form.Row>
-              <Col xs={12} md={8}>
+          <h1>Use the dropdowns to find your scene!</h1>
+          {/* Will want to replace with API driven data. Also, use a For/ForEach loop to create more buttons when needed */}
+          <Form className="d-flex flex-row" onSubmit={handleFormSubmit}>
+            <div className="d-flex flex-row justify-content-left m-4">
+              <DropdownButton id="dropdown-basic-button" title="Category">
+                <Dropdown.Item href="#/action-1">Mountains</Dropdown.Item>
+                <Dropdown.Item href="#/action-2">Beaches</Dropdown.Item>
+                <Dropdown.Item href="#/action-3">Cities</Dropdown.Item>
+              </DropdownButton>
+              <DropdownButton id="dropdown-basic-button" title="Country">
+                <Dropdown.Item href="#/action-1">United States</Dropdown.Item>
+                <Dropdown.Item href="#/action-2">France</Dropdown.Item>
+                <Dropdown.Item href="#/action-3">Switzerland</Dropdown.Item>
+              </DropdownButton>
+            </div>
+            <div className="d-flex flex-row justify-content-right m-4">
+              {/* <Form.Row> */}
+              {/* <Col xs={12} md={8}>
                 <Form.Control
                   name="searchInput"
                   value={searchInput}
@@ -98,13 +122,19 @@ const SearchWebcams = () => {
                   size="lg"
                   placeholder="Search for a webcam"
                 />
-              </Col>
+              </Col> */}
               <Col xs={12} md={4}>
-                <Button type="submit" variant="success" size="lg">
+                <Button
+                  className="btn btn-outline-light btn-lg text-dark m-2"
+                  type="submit"
+                  variant="light"
+                  size="lg"
+                >
                   Submit Search
                 </Button>
               </Col>
-            </Form.Row>
+              {/* </Form.Row> */}
+            </div>
           </Form>
         </Container>
       </Jumbotron>
@@ -151,7 +181,7 @@ const SearchWebcams = () => {
           })}
         </CardColumns>
       </Container>
-    </>
+    </div>
   );
 };
 

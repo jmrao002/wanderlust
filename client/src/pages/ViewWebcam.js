@@ -1,5 +1,7 @@
 import React from "react";
 import { Container } from "react-bootstrap";
+import { useMutation, useQuery } from "@apollo/react-hooks";
+import { GET_ME } from "../utils/queries";
 
 const ViewWebcam = () => {
   const { loading, data } = useQuery(GET_ME);
@@ -13,9 +15,9 @@ const ViewWebcam = () => {
       <Container>
         <a
           name="windy-webcam-timelapse-player"
-          data-id={`${webcamId}`}
+          data-id={`${data}`}
           data-play="month"
-          href={`https://windy.com/webcams/${webcamId}`}
+          href={`https://windy.com/webcams/${data}`}
           target="_blank"
         ></a>
         <script>
