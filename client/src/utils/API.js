@@ -55,7 +55,7 @@ export const deleteWebcam = (webcamId, token) => {
 // make a search to windy webcams api
 export const searchWindyWebcams = (query) => {
   let myHeaders = new Headers();
-  myHeaders.append("x-windy-key", `${REACT_APP_API_KEY}`);
+  myHeaders.append("x-windy-key", `${process.env.REACT_APP_API_KEY}`);
   let requestOptions = {
     method: "GET",
     headers: myHeaders,
