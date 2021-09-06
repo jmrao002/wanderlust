@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Container, Dropdown, DropdownButton } from "react-bootstrap";
+import { useCategory } from '../utils/GlobalContext'
 require("dotenv").config();
 
 const CategoryDropdown = () => {
   const [loading, setLoading] = React.useState(true);
+  // Pluck values from our CategoryContext by invoking our useCategory hook
+  const { category, toggleCategory } = useCategory();
   const [items, setItems] = React.useState([
     { label: "Loading...", value: "" },
   ]);
@@ -38,19 +41,19 @@ const CategoryDropdown = () => {
 
   return (
     // redo all of this with bootstrap components... unless you're going to break it :)
-      <select
-        className="m-4"
-        disabled={loading}
-        value={value}
-        onChange={(e) => setValue(e.currentTarget.value)}
-      >
-        <option value="null">--Choose a Category--</option>
-        {items.map(({ label, value }) => (
-          <option key={value} value={value}>
-            {label}
-          </option>
-        ))}
-      </select>
+    <select
+      className="m-4"
+      disabled={loading}
+      value={value}
+      onChange={(e) => setValue(e.currentTarget.value)}
+    >
+      <option value="null">--Choose a Category--</option>
+      {items.map(({ label, value }) => (
+        <option key={value} value={value}>
+          {label}
+        </option>
+      ))}
+    </select>
   );
 };
 
