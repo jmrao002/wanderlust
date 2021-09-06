@@ -47,7 +47,7 @@ const SavedWebcams = () => {
     <>
       <Jumbotron fluid className="text-light bg-dark">
         <Container>
-          <h1>Viewing saved webcams!</h1>
+          <h1>Viewing Saved Webcams</h1>
         </Container>
       </Jumbotron>
       <Container>

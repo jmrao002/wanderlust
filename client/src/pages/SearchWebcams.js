@@ -28,11 +28,11 @@ const SearchWebcams = () => {
     return () => saveWebcamIds(savedWebcamIds);
   });
 
-  // function to search and to set state
+  // function to search
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    if (!categoryInput) {
+    if (categoryInput == "null") {
       return false;
     }
 
@@ -53,7 +53,6 @@ const SearchWebcams = () => {
       }));
 
       setSearchedWebcams(webcamData);
-      setCategoryInput("");
     } catch (err) {
       console.error(err);
     }
@@ -85,74 +84,74 @@ const SearchWebcams = () => {
   return (
     <div>
       {/* Need to get a background image or video working here. */}
-      <Jumbotron fluid className="text-dark">
-        <Container>
-          <h1>Use the dropdowns to travel anywhere.</h1>
-          {/* Will want to replace with API driven data. Also, use a For/ForEach loop to create more buttons when needed */}
-          <Form className="d-flex flex-row" onSubmit={handleFormSubmit}>
-            <Col>
-              {/* Call over to category dropdown component */}
-              <CategoryDropdown />
-            </Col>
-            {/* <Form.Row> */}
-            <Col>
-              <Button
-                className="btn btn-outline-light btn-lg text-dark m-2"
-                type="submit"
-                variant="light"
-                size="lg"
-              >
-                Submit Search
-              </Button>
-            </Col>
-            {/* </Form.Row> */}
-          </Form>
-        </Container>
-      </Jumbotron>
+      <div id="hero" className="d-flex flex-column justify-content-center">
+        <div className="row justify-content-center">
+          <div className="col-xl-8 text-center transparent">
+            <h1>Your Window to the World</h1>
+            <h3>Start Your Search</h3>
 
-      <Container>
-        {/* Might want to replace with a giphy tutorial? */}
-        {/* <h2>
+            <Form className="d-flex flex-row" onSubmit={handleFormSubmit}>
+              <Col>
+                {/* Call over to category dropdown component */}
+                <CategoryDropdown />
+              </Col>
+              {/* <Form.Row> */}
+              <Col className="align-items-center">
+                <Button
+                  className="btn btn-outline-light btn-lg text-dark m-2"
+                  type="submit"
+                  variant="light"
+                  size="lg"
+                >
+                  Submit
+                </Button>
+              </Col>
+              {/* </Form.Row> */}
+            </Form>
+          </div>
+        </div>
+      </div>
+      {/* Might want to replace with a giphy tutorial? */}
+      {/* <h2>
           {searchedWebcams.length
             ? `Viewing ${searchedWebcams.length} results:`
             : "Search for a webcam to begin"}
         </h2> */}
-        <CardColumns>
-          {searchedWebcams.map((webcam) => {
-            return (
-              <Card key={webcam.webcamId} border="dark">
-                {webcam.image ? (
-                  <Card.Img
-                    src={webcam.image}
-                    alt={`The cover for ${webcam.title}`}
-                    variant="top"
-                  />
-                ) : null}
-                <Card.Body>
-                  <Card.Title>{webcam.title}</Card.Title>
-                  <p className="small">Authors: {webcam.authors}</p>
-                  <Card.Text>{webcam.description}</Card.Text>
-                  {Auth.loggedIn() && (
-                    <Button
-                      disabled={savedWebcamIds?.some(
-                        (savedWebcamId) => savedWebcamId === webcam.webcamId
-                      )}
-                      className="btn-block btn-info"
-                      onClick={() => handleSaveWebcam(webcam.webcamId)}
-                    >
-                      {savedWebcamIds?.some(
-                        (savedWebcamId) => savedWebcamId === webcam.webcamId
-                      )
-                        ? "This webcam has already been saved!"
-                        : "Save this Webcam!"}
-                    </Button>
-                  )}
-                </Card.Body>
-              </Card>
-            );
-          })}
-        </CardColumns>
-      </Container>
+      <CardColumns>
+        {searchedWebcams.map((webcam) => {
+          return (
+            <Card key={webcam.webcamId} border="dark">
+              {webcam.image ? (
+                <Card.Img
+                  src={webcam.image}
+                  alt={`The cover for ${webcam.title}`}
+                  variant="top"
+                />
+              ) : null}
+              <Card.Body>
+                <Card.Title>{webcam.title}</Card.Title>
+                <p className="small">Authors: {webcam.authors}</p>
+                <Card.Text>{webcam.description}</Card.Text>
+                {Auth.loggedIn() && (
+                  <Button
+                    disabled={savedWebcamIds?.some(
+                      (savedWebcamId) => savedWebcamId === webcam.webcamId
+                    )}
+                    className="btn-block btn-info"
+                    onClick={() => handleSaveWebcam(webcam.webcamId)}
+                  >
+                    {savedWebcamIds?.some(
+                      (savedWebcamId) => savedWebcamId === webcam.webcamId
+                    )
+                      ? "This webcam has already been saved!"
+                      : "Save this Webcam!"}
+                  </Button>
+                )}
+              </Card.Body>
+            </Card>
+          );
+        })}
+      </CardColumns>
     </div>
   );
 };

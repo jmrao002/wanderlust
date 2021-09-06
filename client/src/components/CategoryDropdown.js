@@ -38,8 +38,9 @@ const CategoryDropdown = () => {
 
   return (
     // redo all of this with bootstrap components... unless you're going to break it :)
-    <>
+    <div>
       <select
+        className="m-4"
         disabled={loading}
         value={value}
         onChange={(e) => setValue(e.currentTarget.value)}
@@ -51,7 +52,20 @@ const CategoryDropdown = () => {
           </option>
         ))}
       </select>
-    </>
+      {/* <select
+        className="m-4"
+        disabled={loading}
+        value={value}
+        onChange={(e) => setValue(e.currentTarget.value)}
+      >
+        <option value="null">--Choose a Location--</option>
+        {items.map(({ label, value }) => (
+          <option key={value} value={value}>
+            {label}
+          </option>
+        ))}
+      </select> */}
+    </div>
   );
 };
 
