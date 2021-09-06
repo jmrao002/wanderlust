@@ -15,6 +15,7 @@ import Auth from "../utils/auth";
 import { saveWebcam, searchWindyWebcams } from "../utils/API";
 import { saveWebcamIds, getSavedWebcamIds } from "../utils/localStorage";
 import CategoryDropdown from "../components/CategoryDropdown";
+// import LocationDropdown from "../components/LocationDropdown";
 
 const SearchWebcams = () => {
   const [searchedWebcams, setSearchedWebcams] = useState([]);
@@ -29,12 +30,8 @@ const SearchWebcams = () => {
   });
 
   // function to search
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-
-    if (categoryInput == "null") {
-      return false;
-    }
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
 
     try {
       const response = await searchWindyWebcams(categoryInput);
@@ -94,6 +91,7 @@ const SearchWebcams = () => {
               <Col>
                 {/* Call over to category dropdown component */}
                 <CategoryDropdown />
+                {/* <LocationDropdown /> */}
               </Col>
               {/* <Form.Row> */}
               <Col className="align-items-center">

@@ -53,6 +53,7 @@ export const deleteWebcam = (webcamId, token) => {
 };
 
 // make a search to windy webcams api
+// will get 10 results unless otherwise specified
 export const searchWindyWebcams = (query) => {
   return fetch(
     `https://api.windy.com/api/webcams/v2/list/category=${query}&key=2LUGQul9yRztrjwRIjsxvu1laj1HUCuq`
