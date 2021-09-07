@@ -14,8 +14,7 @@ import { useMutation } from "@apollo/react-hooks";
 import Auth from "../utils/auth";
 import { saveWebcam, searchWindyWebcams } from "../utils/API";
 import { saveWebcamIds, getSavedWebcamIds } from "../utils/localStorage";
-import CategoryDropdown from "../components/CategoryDropdown";
-// import LocationDropdown from "../components/LocationDropdown";
+import CategoryMenu from "../components/CategoryMenu";
 
 const SearchWebcams = () => {
   const [searchedWebcams, setSearchedWebcams] = useState([]);
@@ -90,7 +89,7 @@ const SearchWebcams = () => {
             <Form className="d-flex flex-row" onSubmit={handleFormSubmit}>
               <Col>
                 {/* Call over to category dropdown component */}
-                <CategoryDropdown />
+                <CategoryMenu />
                 {/* <LocationDropdown /> */}
               </Col>
               {/* <Form.Row> */}

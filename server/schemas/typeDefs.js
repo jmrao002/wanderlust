@@ -1,11 +1,14 @@
 const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
+  type Category {
+    _id: ID
+    name: String
+  }
+
   type Webcam {
     _id: ID!
     webcamId: String
-    authors: [String]
-    description: String
     title: String
     image: String
     link: String
@@ -18,15 +21,14 @@ const typeDefs = gql`
     savedWebcams: [Webcam]
   }
   input savedWebcam {
-    description: String
     title: String
     webcamId: String
     image: String
     link: String
-    authors: [String]
   }
   type Query {
     me: User
+    categories: [Category]
   }
   type Mutation {
     login(email: String!, password: String!): Auth

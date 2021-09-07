@@ -6,7 +6,7 @@ import ViewWebcam from "./pages/ViewWebcam";
 import Navbar from "./components/Navbar";
 import { ApolloProvider } from "@apollo/react-hooks";
 import ApolloClient from "apollo-boost";
-import GlobalProvider from "./utils/GlobalContext";
+import { StoreProvider } from './utils/GlobalState'
 
 const client = new ApolloClient({
   request: (operation) => {
@@ -24,17 +24,25 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <GlobalProvider>
       <Router>
+        <div>
+          <StoreProvider>
           <Navbar />
           <Switch>
             <Route exact path="/" component={SearchWebcams} />
             <Route exact path="/saved" component={SavedWebcams} />
             <Route exact path="/view" component={ViewWebcam} />
-            <Route render={() => <h1 className="display-2">Oops! Something went terribly wrong!</h1>} />
+            <Route
+              render={() => (
+                <h1 className="display-2">
+                  Oops! Something went terribly wrong!
+                </h1>
+              )}
+            />
           </Switch>
-        </Router>
-      </GlobalProvider>
+          </StoreProvider>
+        </div>
+      </Router>
     </ApolloProvider>
   );
 }

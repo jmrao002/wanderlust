@@ -1,10 +1,13 @@
-const { User, Webcam } = require("../models");
+const { User, Webcam, Category } = require("../models");
 const { AuthenticationError } = require("apollo-server-express");
 const { signToken } = require("../utils/auth");
 
 // create the functions that fulfill the queries defined in typeDefs
 const resolvers = {
   Query: {
+    categories: async () => {
+      return await Category.find();
+    },
     me: async (parent, args, context) => {
       // check if there is a matching user
       if (context.user) {
