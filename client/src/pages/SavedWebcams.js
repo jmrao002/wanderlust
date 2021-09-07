@@ -56,7 +56,7 @@ const SavedWebcams = () => {
             ? `Viewing ${userData.savedWebcams.length} saved ${
                 userData.savedWebcams.length === 1 ? "webcam" : "webcams"
               }:`
-            : "You have no saved webcams!"}
+            : "Nothing saved... what are you waiting for?"}
         </h2>
         <CardColumns>
           {userData.savedWebcams.map((webcam) => {

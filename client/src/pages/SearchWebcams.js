@@ -25,8 +25,8 @@ const SearchWebcams = () => {
   });
 
   // function to search
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
+  const handleFormSubmit = async (evt) => {
+    evt.preventDefault();
 
     try {
       const response = await searchWindyWebcams(currentCategory);
@@ -81,35 +81,18 @@ const SearchWebcams = () => {
           <div className="col-xl-8 text-center transparent">
             <h1>Your Window to the World</h1>
             <h3>Start Your Search</h3>
-
-            <Form className="d-flex flex-row" onSubmit={handleFormSubmit}>
-              <Col>
-                {/* Call over to category dropdown component */}
-                <CategoryMenu />
-                {/* <LocationDropdown /> */}
-              </Col>
-              {/* <Form.Row> */}
-              <Col className="align-items-center">
-                <Button
-                  className="btn btn-outline-light btn-lg text-dark m-2"
-                  type="submit"
-                  variant="light"
-                  size="lg"
-                >
-                  Submit
-                </Button>
-              </Col>
-              {/* </Form.Row> */}
+            {/* Note that this submits the form because it is using the React Bootstrap Form. If you remove that, you need to build a submit button. Something to think about if you add a Location parameter. */}
+            <Form
+              className="d-flex flex-row justify-content-center"
+              onSubmit={handleFormSubmit}
+            >
+              {/* Category dropdown component */}
+              <CategoryMenu />
             </Form>
           </div>
         </div>
       </div>
-      {/* Might want to replace with a giphy tutorial? */}
-      {/* <h2>
-          {searchedWebcams.length
-            ? `Viewing ${searchedWebcams.length} results:`
-            : "Search for a webcam to begin"}
-        </h2> */}
+      {/* Results Page */}
       <CardColumns>
         {searchedWebcams.map((webcam) => {
           return (
@@ -123,7 +106,6 @@ const SearchWebcams = () => {
               ) : null}
               <Card.Body>
                 <Card.Title>{webcam.title}</Card.Title>
-                <p className="small">Authors: {webcam.authors}</p>
                 <Card.Text>{webcam.description}</Card.Text>
                 {Auth.loggedIn() && (
                   <Button

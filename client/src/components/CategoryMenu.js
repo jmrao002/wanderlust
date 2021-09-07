@@ -41,7 +41,6 @@ function CategoryMenu() {
   // get button to highlight on click somehow
   return (
     <div>
-      <p>Choose a Category:</p>
       {categories.map((item) => (
         <button
           className="m-1"

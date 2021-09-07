@@ -65,7 +65,7 @@ export const searchWindyWebcams = (query) => {
   };
 
   fetch(
-    `https://api.windy.com/api/webcams/v2/list/?category=${query}`,
+    "https://api.windy.com/api/webcams/v2/list/property=live/category=beach/orderby=popularity/limit=20?show=webcams:image,player",
     requestOptions
   )
     .then((response) => response.text())
