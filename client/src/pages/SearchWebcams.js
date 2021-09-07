@@ -1,13 +1,6 @@
 import React, { useState, useEffect } from "react";
-import {
-  Jumbotron,
-  Container,
-  Col,
-  Form,
-  Button,
-  Card,
-  CardColumns,
-} from "react-bootstrap";
+import { useQuery } from "@apollo/client";
+import { Col, Form, Button, Card, CardColumns } from "react-bootstrap";
 // import the mutation we're going to execute
 import { SAVE_WEBCAM } from "../utils/mutations";
 import { useMutation } from "@apollo/react-hooks";
@@ -15,10 +8,13 @@ import Auth from "../utils/auth";
 import { saveWebcam, searchWindyWebcams } from "../utils/API";
 import { saveWebcamIds, getSavedWebcamIds } from "../utils/localStorage";
 import CategoryMenu from "../components/CategoryMenu";
+import { useStoreContext } from "../utils/GlobalState";
 
 const SearchWebcams = () => {
+  const [state, dispatch] = useStoreContext();
+  const { currentCategory } = state;
+  console.log(state);
   const [searchedWebcams, setSearchedWebcams] = useState([]);
-  const [categoryInput, setCategoryInput] = useState("");
 
   const [savedWebcamIds, setSavedWebcamIds] = useState(getSavedWebcamIds());
 
@@ -33,7 +29,7 @@ const SearchWebcams = () => {
     e.preventDefault();
 
     try {
-      const response = await searchWindyWebcams(categoryInput);
+      const response = await searchWindyWebcams(currentCategory);
 
       if (!response.ok) {
         throw new Error("Something went wrong!");

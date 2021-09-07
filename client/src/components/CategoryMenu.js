@@ -37,22 +37,22 @@ function CategoryMenu() {
       currentCategory: id,
     });
   };
-
+  // update look and feel of below
+  // get button to highlight on click somehow
   return (
     <div>
-      <select className="m-4">
-        <option>--Choose a Category--</option>
-        {categories.map((item) => (
-          <option
-            key={item._id}
-            onChange={() => {
-              handleClick(item._id);
-            }}
-          >
-            {item.name}
-          </option>
-        ))}
-      </select>
+      <p>Choose a Category:</p>
+      {categories.map((item) => (
+        <button
+          className="m-1"
+          key={item._id}
+          onClick={() => {
+            handleClick(item.name);
+          }}
+        >
+          {item.name}
+        </button>
+      ))}
     </div>
   );
 }

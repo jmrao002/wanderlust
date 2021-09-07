@@ -55,7 +55,20 @@ export const deleteWebcam = (webcamId, token) => {
 // make a search to windy webcams api
 // will get 10 results unless otherwise specified
 export const searchWindyWebcams = (query) => {
-  return fetch(
-    `https://api.windy.com/api/webcams/v2/list/category=${query}&key=2LUGQul9yRztrjwRIjsxvu1laj1HUCuq`
-  );
+  var myHeaders = new Headers();
+  myHeaders.append("x-windy-key", "D3Exl8vD1peJ1YLjgQxmhD0MA4PiQ5JM");
+
+  var requestOptions = {
+    method: "GET",
+    headers: myHeaders,
+    redirect: "follow",
+  };
+
+  fetch(
+    `https://api.windy.com/api/webcams/v2/list/?category=${query}`,
+    requestOptions
+  )
+    .then((response) => response.text())
+    .then((result) => console.log(result))
+    .catch((error) => console.log("error", error));
 };

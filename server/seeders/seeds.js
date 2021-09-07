@@ -5,15 +5,15 @@ db.once("open", async () => {
   await Category.deleteMany({});
 
   const categories = await Category.insertMany([
-    { name: "Outdoor" },
-    { name: "Lake/River" },
-    { name: "Mountain/Canyon" },
-    { name: "Sky" },
-    { name: "Building" },
-    { name: "Airport" },
-    { name: "City" },
-    { name: "Beach" },
-    { name: "Coast" },
+    { name: "landscape" },
+    { name: "lake" },
+    { name: "mountain" },
+    { name: "traffic" },
+    { name: "building" },
+    { name: "airport" },
+    { name: "city" },
+    { name: "beach" },
+    { name: "coast" },
   ]);
 
   console.log("categories seeded");
