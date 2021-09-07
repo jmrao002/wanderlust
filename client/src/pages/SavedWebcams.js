@@ -71,7 +71,6 @@ const SavedWebcams = () => {
                 ) : null}
                 <Card.Body>
                   <Card.Title>{webcam.title}</Card.Title>
-                  <p className="small">Authors: {webcam.authors}</p>
                   <Card.Link>{webcam.link}</Card.Link>
                   <Button
                     className="btn-block btn-danger"
