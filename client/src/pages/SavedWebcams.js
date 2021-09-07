@@ -72,7 +72,7 @@ const SavedWebcams = () => {
                 <Card.Body>
                   <Card.Title>{webcam.title}</Card.Title>
                   <p className="small">Authors: {webcam.authors}</p>
-                  <Card.Text>{webcam.description}</Card.Text>
+                  <Card.Link>{webcam.link}</Card.Link>
                   <Button
                     className="btn-block btn-danger"
                     onClick={() => handleDeleteWebcam(webcam.webcamId)}

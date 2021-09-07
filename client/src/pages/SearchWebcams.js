@@ -12,7 +12,6 @@ import { useStoreContext } from "../utils/GlobalState";
 const SearchWebcams = () => {
   const [state, dispatch] = useStoreContext();
   const { currentCategory } = state;
-  console.log(state);
   const [searchedWebcams, setSearchedWebcams] = useState([]);
 
   const [savedWebcamIds, setSavedWebcamIds] = useState(getSavedWebcamIds());
@@ -24,8 +23,8 @@ const SearchWebcams = () => {
   });
 
   // function to search
-  const handleFormSubmit = async (evt) => {
-    evt.preventDefault();
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
 
     try {
       const response = await searchWindyWebcams(currentCategory);
@@ -37,10 +36,10 @@ const SearchWebcams = () => {
       const { items } = await response.json();
 
       const webcamData = items.map((webcam) => ({
-        webcamId: webcam.id,
-        image: webcam.volumeInfo.imageLinks?.thumbnail || "",
-        link: webcam.volumeInfo.link,
-        title: webcam.volumeInfo.title,
+        webcamId: webcam.webcams.id,
+        title: webcam.webcams.title,
+        image: webcam.webcams.image?.current.preview || "",
+        link: webcam.webcams.player.live.embed,
       }));
 
       setSearchedWebcams(webcamData);
@@ -99,13 +98,13 @@ const SearchWebcams = () => {
               {webcam.image ? (
                 <Card.Img
                   src={webcam.image}
-                  alt={`The cover for ${webcam.title}`}
+                  alt={`A preview of ${webcam.title}`}
                   variant="top"
                 />
               ) : null}
               <Card.Body>
                 <Card.Title>{webcam.title}</Card.Title>
-                <Card.Text>{webcam.description}</Card.Text>
+                <Card.Link href={webcam.link}>Live View</Card.Link>
                 {Auth.loggedIn() && (
                   <Button
                     disabled={savedWebcamIds?.some(
