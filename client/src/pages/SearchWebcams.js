@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useQuery } from "@apollo/client";
 import { Col, Form, Button, Card, CardColumns } from "react-bootstrap";
 // import the mutation we're going to execute
 import { SAVE_WEBCAM } from "../utils/mutations";
