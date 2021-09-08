@@ -55,20 +55,18 @@ export const deleteWebcam = (webcamId, token) => {
 // make a search to windy webcams api
 // will get 10 results unless otherwise specified
 export const searchWindyWebcams = (query) => {
-  var myHeaders = new Headers();
-  myHeaders.append("x-windy-key", "D3Exl8vD1peJ1YLjgQxmhD0MA4PiQ5JM");
-
   var requestOptions = {
     method: "GET",
-    headers: myHeaders,
     redirect: "follow",
   };
 
-  fetch(
-    "https://api.windy.com/api/webcams/v2/list/property=live/category=beach/orderby=popularity/limit=20?show=webcams:image,player",
+  return fetch(
+    `https://api.windy.com/api/webcams/v2/list/property=live/category=${query}/orderby=popularity/limit=20?show=webcams:image,player&key=D3Exl8vD1peJ1YLjgQxmhD0MA4PiQ5JM`,
     requestOptions
   )
     .then((response) => response.text())
-    .then((result) => console.log(result))
+    .then((result) => {
+      return result;
+    })
     .catch((error) => console.log("error", error));
 };

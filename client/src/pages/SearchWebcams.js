@@ -28,19 +28,16 @@ const SearchWebcams = () => {
 
     try {
       const response = await searchWindyWebcams(currentCategory);
-
-      if (!response.ok) {
-        throw new Error("Something went wrong!");
-      }
-
-      const { items } = await response.json();
+      const responseObj = JSON.parse(response);
+      const items = responseObj.result.webcams;
 
       const webcamData = items.map((webcam) => ({
-        webcamId: webcam.webcams.id,
-        title: webcam.webcams.title,
-        image: webcam.webcams.image?.current.preview || "",
-        link: webcam.webcams.player.live.embed,
+        webcamId: webcam.id,
+        title: webcam.title,
+        image: webcam.image?.current.preview || "",
+        link: webcam.player.live.embed,
       }));
+      console.log(webcamData);
 
       setSearchedWebcams(webcamData);
     } catch (err) {
