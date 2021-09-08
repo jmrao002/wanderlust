@@ -57,7 +57,7 @@ const SavedWebcams = () => {
             ? `Viewing ${userData.savedWebcams.length} saved ${
                 userData.savedWebcams.length === 1 ? "webcam" : "webcams"
               }:`
-            : "Nothing saved... what are you waiting for?"}
+            : "You have no saved webcams!"}
         </h2>
         <CardColumns>
           {userData.savedWebcams.map((webcam) => {
@@ -66,13 +66,13 @@ const SavedWebcams = () => {
                 {webcam.image ? (
                   <Card.Img
                     src={webcam.image}
-                    alt={`The cover for ${webcam.title}`}
+                    alt={`A preview of ${webcam.title}`}
                     variant="top"
                   />
                 ) : null}
                 <Card.Body>
                   <Card.Title>{webcam.title}</Card.Title>
-                  <Card.Link>{webcam.link}</Card.Link>
+                  <Card.Link href={"/view"}>Live View</Card.Link>
                   <Button
                     className="btn-block btn-danger"
                     onClick={() => handleDeleteWebcam(webcam.webcamId)}

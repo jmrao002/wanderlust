@@ -22,6 +22,11 @@ const SearchWebcams = () => {
     return () => saveWebcamIds(savedWebcamIds);
   });
 
+  const autoScroll = () => {
+    let element = document.getElementById("cards");
+    element.scrollIntoView({ behavior: "smooth" });
+  };
+
   // function to search
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -37,9 +42,9 @@ const SearchWebcams = () => {
         image: webcam.image?.current.preview || "",
         link: webcam.player.live.embed,
       }));
-      console.log(webcamData);
 
       setSearchedWebcams(webcamData);
+      autoScroll();
     } catch (err) {
       console.error(err);
     }
@@ -63,6 +68,7 @@ const SearchWebcams = () => {
       });
 
       setSavedWebcamIds([...savedWebcamIds, webcamToSave.webcamId]);
+
     } catch (err) {
       console.error(err);
     }
@@ -88,7 +94,7 @@ const SearchWebcams = () => {
         </div>
       </div>
       {/* Results Page */}
-      <CardColumns>
+      <CardColumns id="cards" className="m-4">
         {searchedWebcams.map((webcam) => {
           return (
             <Card key={webcam.webcamId} border="dark">
@@ -101,7 +107,7 @@ const SearchWebcams = () => {
               ) : null}
               <Card.Body>
                 <Card.Title>{webcam.title}</Card.Title>
-                <Card.Link href={webcam.link}>Live View</Card.Link>
+                <Card.Link href={"/view"}>Live View</Card.Link>
                 {Auth.loggedIn() && (
                   <Button
                     disabled={savedWebcamIds?.some(
@@ -113,7 +119,7 @@ const SearchWebcams = () => {
                     {savedWebcamIds?.some(
                       (savedWebcamId) => savedWebcamId === webcam.webcamId
                     )
-                      ? "This webcam has already been saved!"
+                      ? "This webcam has been saved!"
                       : "Save this Webcam!"}
                   </Button>
                 )}
@@ -121,7 +127,6 @@ const SearchWebcams = () => {
             </Card>
           );
         })}
-        {/* Might be able to use scroll-spy to get here post-search (npm) */}
       </CardColumns>
     </div>
   );
