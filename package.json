@@ -23,7 +23,6 @@
   },
   "homepage": "https://github.com/jmrao002/wanderlust#readme",
   "dependencies": {
-    "@apollo/client": "^3.4.10",
     "core-js": "^3.16.4",
     "dotenv": "^10.0.0",
     "graphql": "^15.5.1",

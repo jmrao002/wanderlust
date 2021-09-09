@@ -6,8 +6,7 @@ import {
   Card,
   Button,
 } from "react-bootstrap";
-import { useMutation } from "@apollo/react-hooks";
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/react-hooks";
 // import the query we're going to execute and the mutation
 import { GET_ME } from "../utils/queries";
 import { REMOVE_WEBCAM } from "../utils/mutations";

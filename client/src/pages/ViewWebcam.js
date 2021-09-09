@@ -1,6 +1,5 @@
 import React from "react";
-import { useMutation } from "@apollo/react-hooks";
-import { useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/react-hooks";
 import { GET_ME } from "../utils/queries";
 import WebcamiFrame from "../components/WebcamiFrame";
 import { useStoreContext } from "../utils/GlobalState";
