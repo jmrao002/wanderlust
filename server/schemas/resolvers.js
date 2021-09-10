@@ -12,17 +12,18 @@ const resolvers = {
     //   return await Sortoption.find();
     // },
     me: async (parent, args, context) => {
-      // check if there is a matching user
       if (context.user) {
-        // check data saved against the user
-        const userData = await User.findOne({})
-          .select("-__v -password")
-          .populate("webcams");
-        // get and return the user's saved webcams
+        const userData = await User.findOne({ _id: context.user._id }).select(
+          "-__ -password"
+        );
         return userData;
       }
-
-      throw new AuthenticationError("You need to log in to see this page!");
+    },
+    users: async () => {
+      return User.find().select("-__v -password");
+    },
+    user: async (parent, { username }) => {
+      return User.findOne({ username }).select("-__ -password");
     },
   },
 
