@@ -1,7 +1,6 @@
 const db = require("../config/connection");
 const { Category } = require("../models");
 
-
 db.once("open", async () => {
   await Category.deleteMany({});
 
@@ -18,6 +17,17 @@ db.once("open", async () => {
   ]);
 
   console.log("categories seeded");
+
+  // await Sortoption.deleteMany({});
+
+  // const sortoptions = await Sortoption.insertMany([
+  //   { name: "popularity" },
+  //   { name: "hotness" },
+  //   { name: "new" },
+  //   { name: "random" },
+  // ]);
+
+  // console.log("sortoptions seeded");
 
   process.exit();
 });

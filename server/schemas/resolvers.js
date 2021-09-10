@@ -8,6 +8,9 @@ const resolvers = {
     categories: async () => {
       return await Category.find();
     },
+    // sortoptions: async () => {
+    //   return await Sortoption.find();
+    // },
     me: async (parent, args, context) => {
       // check if there is a matching user
       if (context.user) {

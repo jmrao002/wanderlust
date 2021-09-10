@@ -18,7 +18,7 @@ const server = new ApolloServer({
   context: authMiddleware,
 });
 
-// update express.js to use apollo server 
+// update express.js to use apollo server
 server.applyMiddleware({ app });
 
 app.use(express.urlencoded({ extended: true }));

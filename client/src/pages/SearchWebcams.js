@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Col, Form, Button, Card, CardColumns } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { Form, Button, Card, CardColumns } from "react-bootstrap";
 // import the mutation we're going to execute
 import { SAVE_WEBCAM } from "../utils/mutations";
 import { useMutation } from "@apollo/react-hooks";
 import Auth from "../utils/auth";
-import { saveWebcam, searchWindyWebcams } from "../utils/API";
+import { searchWindyWebcams } from "../utils/API";
 import { saveWebcamIds, getSavedWebcamIds } from "../utils/localStorage";
 import CategoryMenu from "../components/CategoryMenu";
+// import SortDropdown from "../components/SortDropdown";
 import { useStoreContext } from "../utils/GlobalState";
 
 const SearchWebcams = () => {
@@ -68,7 +70,6 @@ const SearchWebcams = () => {
       });
 
       setSavedWebcamIds([...savedWebcamIds, webcamToSave.webcamId]);
-
     } catch (err) {
       console.error(err);
     }
@@ -87,47 +88,60 @@ const SearchWebcams = () => {
               className="d-flex flex-row justify-content-center"
               onSubmit={handleFormSubmit}
             >
-              {/* Category dropdown component */}
+              {/* Category buttons component */}
               <CategoryMenu />
             </Form>
           </div>
         </div>
       </div>
       {/* Results Page */}
-      <CardColumns id="cards" className="m-4">
-        {searchedWebcams.map((webcam) => {
-          return (
-            <Card key={webcam.webcamId} border="dark">
-              {webcam.image ? (
-                <Card.Img
-                  src={webcam.image}
-                  alt={`A preview of ${webcam.title}`}
-                  variant="top"
-                />
-              ) : null}
-              <Card.Body>
-                <Card.Title>{webcam.title}</Card.Title>
-                <Card.Link href={"/view"}>Live View</Card.Link>
-                {Auth.loggedIn() && (
-                  <Button
-                    disabled={savedWebcamIds?.some(
-                      (savedWebcamId) => savedWebcamId === webcam.webcamId
-                    )}
-                    className="btn-block btn-info"
-                    onClick={() => handleSaveWebcam(webcam.webcamId)}
+      <div id="cards">
+        {/* <SortDropdown /> */}
+        <CardColumns className="m-4">
+          {searchedWebcams.map((webcam) => {
+            return (
+              <Card key={webcam.webcamId} border="dark">
+                {webcam.image ? (
+                  <Card.Img
+                    src={webcam.image}
+                    alt={`A preview of ${webcam.title}`}
+                    variant="top"
+                  />
+                ) : null}
+                <Card.Body>
+                  <Card.Title>{webcam.title}</Card.Title>
+                  <Link
+                    to={{
+                      pathname: "/view",
+                      state: {
+                        webcamId: webcam.webcamId,
+                        webcamTitle: webcam.title,
+                      },
+                    }}
                   >
-                    {savedWebcamIds?.some(
-                      (savedWebcamId) => savedWebcamId === webcam.webcamId
-                    )
-                      ? "This webcam has been saved!"
-                      : "Save this Webcam!"}
-                  </Button>
-                )}
-              </Card.Body>
-            </Card>
-          );
-        })}
-      </CardColumns>
+                    Live View
+                  </Link>
+                  {Auth.loggedIn() && (
+                    <Button
+                      disabled={savedWebcamIds?.some(
+                        (savedWebcamId) => savedWebcamId === webcam.webcamId
+                      )}
+                      className="btn-block btn-info"
+                      onClick={() => handleSaveWebcam(webcam.webcamId)}
+                    >
+                      {savedWebcamIds?.some(
+                        (savedWebcamId) => savedWebcamId === webcam.webcamId
+                      )
+                        ? "This webcam has been saved!"
+                        : "Save this Webcam!"}
+                    </Button>
+                  )}
+                </Card.Body>
+              </Card>
+            );
+          })}
+        </CardColumns>
+      </div>
     </div>
   );
 };

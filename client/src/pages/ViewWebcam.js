@@ -1,22 +1,23 @@
 import React from "react";
-import { useQuery } from "@apollo/react-hooks";
-import { GET_ME } from "../utils/queries";
-import WebcamiFrame from "../components/WebcamiFrame";
-import { useStoreContext } from "../utils/GlobalState";
+import { Container } from "react-bootstrap";
+import { useLocation } from "react-router-dom";
 
-const ViewWebcam = () => {
-  const { loading, data } = useQuery(GET_ME);
-  const [state, dispatch] = useStoreContext();
-  const { currentCategory } = state;
-
-  if (loading) {
-    return <h2>Loading...</h2>;
-  }
-
+const ViewWebcam = (props) => {
+  const location = useLocation();
+  const webcamId = location.state?.webcamId;
+  const webcamTitle = location.state?.webcamTitle;
   return (
-    <>
-      <WebcamiFrame />
-    </>
+    <Container className="d-flex justify-content-center m-4">
+      <div className="d-flex row">
+        <p className="justify-content-center">Live view of {webcamTitle}</p>
+        <iframe
+          title="Live View"
+          src={`https://webcams.windy.com/webcams/stream/${webcamId}`}
+          width="1080px"
+          height="720px"
+        ></iframe>
+      </div>
+    </Container>
   );
 };
 

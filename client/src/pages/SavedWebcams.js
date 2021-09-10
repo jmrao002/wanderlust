@@ -6,6 +6,7 @@ import {
   Card,
   Button,
 } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 // import the query we're going to execute and the mutation
 import { GET_ME } from "../utils/queries";
@@ -71,7 +72,17 @@ const SavedWebcams = () => {
                 ) : null}
                 <Card.Body>
                   <Card.Title>{webcam.title}</Card.Title>
-                  <Card.Link href={"/view"}>Live View</Card.Link>
+                  <Link
+                    to={{
+                      pathname: "/view",
+                      state: {
+                        webcamId: webcam.webcamId,
+                        webcamTitle: webcam.title,
+                      },
+                    }}
+                  >
+                    Live View
+                  </Link>
                   <Button
                     className="btn-block btn-danger"
                     onClick={() => handleDeleteWebcam(webcam.webcamId)}

@@ -5,7 +5,6 @@ const typeDefs = gql`
     _id: ID
     name: String
   }
-
   type Webcam {
     _id: ID!
     webcamId: String
