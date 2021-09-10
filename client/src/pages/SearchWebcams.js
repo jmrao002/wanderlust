@@ -111,6 +111,7 @@ const SearchWebcams = () => {
                 <Card.Body>
                   <Card.Title>{webcam.title}</Card.Title>
                   <Link
+                    target="_blank"
                     to={{
                       pathname: "/view",
                       state: {
