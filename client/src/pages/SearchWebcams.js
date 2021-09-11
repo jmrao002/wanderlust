@@ -82,15 +82,15 @@ const SearchWebcams = () => {
       {/* Need to get a background image or video working here. */}
       <div id="hero" className="d-flex flex-column">
         <div className="justify-content-around row mobile-hide">
-          <Clock title="Tokyo" datediff={9} />
-          <Clock title="Dubai" datediff={4} />
-          <Clock title="Paris" datediff={-2} />
-          <Clock title="Chicago" datediff={-7} />
+          <Clock title="tokyo" datediff={9} />
+          <Clock title="dubai" datediff={4} />
+          <Clock title="paris" datediff={-2} />
+          <Clock title="chicago" datediff={-7} />
         </div>
         <div className="row justify-content-center">
           <div className="col-xl-8 text-center transparent pt-50">
             <h1>Your Window to the World</h1>
-            <h3>Start Your Search</h3>
+            <h3>start your search</h3>
             {/* Note that this submits the form because it is using the React Bootstrap Form. If you remove that, you need to build a submit button. Something to think about if you add a Location parameter. */}
             <Form
               className="d-flex flex-row justify-content-center"

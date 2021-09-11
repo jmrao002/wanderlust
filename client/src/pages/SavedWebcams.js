@@ -42,7 +42,7 @@ const SavedWebcams = () => {
     <>
       <Jumbotron fluid className="text-light bg-dark">
         <Container>
-          <h1>Viewing Saved Webcams</h1>
+          <h1>viewing saved webcams</h1>
         </Container>
       </Jumbotron>
       <Container>
@@ -51,7 +51,7 @@ const SavedWebcams = () => {
             ? `Viewing ${userData.savedWebcams.length} saved ${
                 userData.savedWebcams.length === 1 ? "webcam" : "webcams"
               }:`
-            : "You have no saved webcams!"}
+            : "you have no saved webcams!"}
         </h2>
         <CardColumns>
           {userData.savedWebcams.map((webcam) => {
