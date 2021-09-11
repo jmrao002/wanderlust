@@ -81,7 +81,7 @@ const SearchWebcams = () => {
     <div>
       {/* Need to get a background image or video working here. */}
       <div id="hero" className="d-flex flex-column">
-        <div className="justify-content-around row">
+        <div className="justify-content-around row mobile-hide">
           <Clock title="Tokyo" datediff={9} />
           <Clock title="Dubai" datediff={4} />
           <Clock title="Paris" datediff={-2} />

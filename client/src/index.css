@@ -86,3 +86,9 @@ h6 {
   top: 15px;
   border-left: solid 2px #000;
 }
+
+@media (max-width: 768px) {
+  .mobile-hide {
+    display: none;
+  }
+}
