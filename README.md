@@ -13,7 +13,7 @@ A web application that allows users to search for webcams around the world using
 
 This application allows users to search for webcams around the world using the Windy Webcams API. Users can save individual webcam results to a "Saved" page, where they can, if logged in, reference their saved material at a later time. It is also possible in this application to delete webcams from the "Saved" page. Clicking a "live view" of any wecbam will render an iframe with a live feed natively in the application.
 
-![app screenshot](https://raw.githubusercontent.com/jmrao002/googlebooks-app/main/client/public/screenshot.png "App Screenshot")
+![app screenshot](https://raw.githubusercontent.com/jmrao002/wanderlust/main/client/src/assets/screenshot.png "App Screenshot")
 
 # Setup/Installation Requirements
 
