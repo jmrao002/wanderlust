@@ -26,7 +26,9 @@
     "core-js": "^3.16.4",
     "dotenv": "^10.0.0",
     "graphql": "^15.5.1",
-    "if-env": "^1.0.4"
+    "if-env": "^1.0.4",
+    "react-awesome-button": "^6.5.1",
+    "react-live-clock": "^5.2.0"
   },
   "devDependencies": {
     "concurrently": "^5.2.0"
