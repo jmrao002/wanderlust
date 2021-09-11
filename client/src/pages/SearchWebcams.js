@@ -80,7 +80,7 @@ const SearchWebcams = () => {
   return (
     <div>
       {/* Need to get a background image or video working here. */}
-      <div id="hero" className="d-flex flex-column justify-content-center">
+      <div id="hero" className="d-flex flex-column">
         <div className="justify-content-around row">
           <Clock title="Tokyo" datediff={9} />
           <Clock title="Dubai" datediff={4} />
