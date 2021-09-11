@@ -8,8 +8,6 @@ import { REMOVE_WEBCAM } from "../utils/mutations";
 
 import Auth from "../utils/auth";
 import { removeWebcamId } from "../utils/localStorage";
-import { AwesomeButton } from "react-awesome-button";
-import "react-awesome-button/dist/styles.css";
 
 const SavedWebcams = () => {
   // execute the query on component load
@@ -68,23 +66,32 @@ const SavedWebcams = () => {
                 ) : null}
                 <Card.Body>
                   <Card.Title>{webcam.title}</Card.Title>
-                  <Link
-                    to={{
-                      pathname: "/view",
-                      state: {
-                        webcamId: webcam.webcamId,
-                        webcamTitle: webcam.title,
-                      },
-                    }}
-                  >
-                    Live View
-                  </Link>
-                  <AwesomeButton
+                  <div className="d-flex justify-content-around">
+                    <Link
+                      to={{
+                        pathname: "/view",
+                        state: {
+                          webcamId: webcam.webcamId,
+                          webcamTitle: webcam.title,
+                        },
+                      }}
+                    >
+                      Live View
+                    </Link>
+                    <Card.Link
+                      href={`http://maps.google.com/maps?q=${webcam.lat},${webcam.lon}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      See it on a map
+                    </Card.Link>
+                  </div>
+                  <button
                     className="btn-block btn-danger"
-                    onPress={() => handleDeleteWebcam(webcam.webcamId)}
+                    onClick={() => handleDeleteWebcam(webcam.webcamId)}
                   >
                     Delete this Webcam!
-                  </AwesomeButton>
+                  </button>
                 </Card.Body>
               </Card>
             );

@@ -1,12 +1,10 @@
 import React, { useState } from "react";
-import { Form, Alert } from "react-bootstrap";
+import { Form, Alert, Button } from "react-bootstrap";
 
 import Auth from "../utils/auth";
 
 import { useMutation } from "@apollo/react-hooks";
 import { LOGIN_USER } from "../utils/mutations";
-import { AwesomeButton } from "react-awesome-button";
-import "react-awesome-button/dist/styles.css";
 
 const LoginForm = () => {
   const [loginUser, { error }] = useMutation(LOGIN_USER);
@@ -79,12 +77,12 @@ const LoginForm = () => {
             Password is required!
           </Form.Control.Feedback>
         </Form.Group>
-        <AwesomeButton
+        <Button
           disabled={!(userFormData.email && userFormData.password)}
           type="primary submit"
         >
           Submit
-        </AwesomeButton>
+        </Button>
       </Form>
       {error && <div>Login failed</div>}
     </>

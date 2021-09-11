@@ -17,6 +17,12 @@ const webcamSchema = new Schema({
   link: {
     type: String,
   },
+  lat: {
+    type: Number,
+  },
+  lon: {
+    type: Number,
+  },
 });
 
 module.exports = webcamSchema;

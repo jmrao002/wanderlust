@@ -4,8 +4,6 @@ import { useStoreContext } from "../utils/GlobalState";
 import { UPDATE_CATEGORIES, UPDATE_CURRENT_CATEGORY } from "../utils/actions";
 import { QUERY_CATEGORIES } from "../utils/queries";
 import { idbPromise } from "../utils/helpers";
-import { AwesomeButton } from "react-awesome-button";
-import "react-awesome-button/dist/styles.css";
 
 function CategoryMenu() {
   const [state, dispatch] = useStoreContext();
@@ -44,16 +42,16 @@ function CategoryMenu() {
   return (
     <div>
       {categories.map((item) => (
-        <AwesomeButton
+        <button
           type="primary"
           className="m-1"
           key={item._id}
-          onPress={() => {
+          onClick={() => {
             handleClick(item.name);
           }}
         >
           {item.name}
-        </AwesomeButton>
+        </button>
       ))}
     </div>
   );

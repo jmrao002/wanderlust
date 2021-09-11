@@ -11,6 +11,8 @@ const typeDefs = gql`
     title: String
     image: String
     link: String
+    lat: Float
+    lon: Float
   }
   type User {
     _id: ID
@@ -24,6 +26,8 @@ const typeDefs = gql`
     webcamId: String
     image: String
     link: String
+    lat: Float
+    lon: Float
   }
   type Query {
     me: User

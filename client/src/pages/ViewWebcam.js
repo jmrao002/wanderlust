@@ -8,7 +8,7 @@ const ViewWebcam = (props) => {
   const webcamTitle = location.state?.webcamTitle;
   return (
     <Container className="d-flex justify-content-center m-4">
-      <div className="d-flex row">
+      <div className="d-flex row justify-content-center">
         <p className="justify-content-center">Live view of {webcamTitle}</p>
         <iframe
           title="Live View"

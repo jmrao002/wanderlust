@@ -14,6 +14,8 @@ export const LOGIN_USER = gql`
           title
           image
           link
+          lat
+          lon
         }
       }
     }
@@ -34,6 +36,8 @@ export const ADD_USER = gql`
           title
           image
           link
+          lat
+          lon
         }
       }
     }
@@ -53,6 +57,8 @@ export const SAVE_WEBCAM = gql`
         title
         image
         link
+        lat
+        lon
       }
     }
   }
@@ -71,6 +77,8 @@ export const REMOVE_WEBCAM = gql`
         title
         image
         link
+        lat
+        lon
       }
     }
   }

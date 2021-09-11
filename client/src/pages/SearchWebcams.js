@@ -10,8 +10,6 @@ import { saveWebcamIds, getSavedWebcamIds } from "../utils/localStorage";
 import CategoryMenu from "../components/CategoryMenu";
 import Clock from "../components/Clock";
 import { useStoreContext } from "../utils/GlobalState";
-import { AwesomeButton } from "react-awesome-button";
-import "react-awesome-button/dist/styles.css";
 
 const SearchWebcams = () => {
   const [state, dispatch] = useStoreContext();
@@ -45,6 +43,8 @@ const SearchWebcams = () => {
         title: webcam.title,
         image: webcam.image?.current.preview || "",
         link: webcam.player.live.embed,
+        lon: webcam.location.longitude,
+        lat: webcam.location.latitude,
       }));
 
       setSearchedWebcams(webcamData);
@@ -117,20 +117,31 @@ const SearchWebcams = () => {
                   />
                 ) : null}
                 <Card.Body>
-                  <Card.Title>{webcam.title}</Card.Title>
-                  <Link
-                    to={{
-                      pathname: "/view",
-                      state: {
-                        webcamId: webcam.webcamId,
-                        webcamTitle: webcam.title,
-                      },
-                    }}
-                  >
-                    Live View
-                  </Link>
+                  <Card.Title className="text-center">
+                    {webcam.title}
+                  </Card.Title>
+                  <div className="d-flex justify-content-around">
+                    <Link
+                      to={{
+                        pathname: "/view",
+                        state: {
+                          webcamId: webcam.webcamId,
+                          webcamTitle: webcam.title,
+                        },
+                      }}
+                    >
+                      Live View
+                    </Link>
+                    <Card.Link
+                      href={`http://maps.google.com/maps?q=${webcam.lat},${webcam.lon}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      See it on a map
+                    </Card.Link>
+                  </div>
                   {Auth.loggedIn() && (
-                    <AwesomeButton
+                    <button
                       size="lg"
                       disabled={savedWebcamIds?.some(
                         (savedWebcamId) => savedWebcamId === webcam.webcamId
@@ -143,7 +154,7 @@ const SearchWebcams = () => {
                       )
                         ? "This webcam has been saved!"
                         : "Save this Webcam!"}
-                    </AwesomeButton>
+                    </button>
                   )}
                 </Card.Body>
               </Card>
