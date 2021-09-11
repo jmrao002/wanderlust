@@ -152,7 +152,7 @@ const SearchWebcams = () => {
                       {savedWebcamIds?.some(
                         (savedWebcamId) => savedWebcamId === webcam.webcamId
                       )
-                        ? "This webcam has been saved!"
+                        ? "Saved!"
                         : "Save this Webcam!"}
                     </button>
                   )}
