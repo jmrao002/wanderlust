@@ -5,6 +5,8 @@ import { Form, Button, Alert } from "react-bootstrap";
 import Auth from "../utils/auth";
 // import the graphql mutation
 import { ADD_USER } from "../utils/mutations";
+import { AwesomeButton } from "react-awesome-button";
+import "react-awesome-button/dist/styles.css";
 
 const SignupForm = () => {
   // invoke useMutation hook to return a promise-based function and data about the ADD_USER mutation
@@ -106,7 +108,7 @@ const SignupForm = () => {
             Password is required!
           </Form.Control.Feedback>
         </Form.Group>
-        <Button
+        <AwesomeButton
           disabled={
             !(
               userFormData.username &&
@@ -114,10 +116,10 @@ const SignupForm = () => {
               userFormData.password
             )
           }
-          type="submit"
+          type="primary submit"
         >
           Submit
-        </Button>
+        </AwesomeButton>
         {/* {error && <div>Sign up failed</div>} */}
       </Form>
     </>

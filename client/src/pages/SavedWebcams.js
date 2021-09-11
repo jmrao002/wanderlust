@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  Jumbotron,
-  Container,
-  CardColumns,
-  Card,
-  Button,
-} from "react-bootstrap";
+import { Jumbotron, Container, CardColumns, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 // import the query we're going to execute and the mutation
@@ -14,6 +8,8 @@ import { REMOVE_WEBCAM } from "../utils/mutations";
 
 import Auth from "../utils/auth";
 import { removeWebcamId } from "../utils/localStorage";
+import { AwesomeButton } from "react-awesome-button";
+import "react-awesome-button/dist/styles.css";
 
 const SavedWebcams = () => {
   // execute the query on component load
@@ -83,12 +79,12 @@ const SavedWebcams = () => {
                   >
                     Live View
                   </Link>
-                  <Button
+                  <AwesomeButton
                     className="btn-block btn-danger"
-                    onClick={() => handleDeleteWebcam(webcam.webcamId)}
+                    onPress={() => handleDeleteWebcam(webcam.webcamId)}
                   >
                     Delete this Webcam!
-                  </Button>
+                  </AwesomeButton>
                 </Card.Body>
               </Card>
             );

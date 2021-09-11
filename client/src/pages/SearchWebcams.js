@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Form, Button, Card, CardColumns } from "react-bootstrap";
+import { Form, Card, CardColumns } from "react-bootstrap";
 // import the mutation we're going to execute
 import { SAVE_WEBCAM } from "../utils/mutations";
 import { useMutation } from "@apollo/react-hooks";
@@ -10,6 +10,9 @@ import { saveWebcamIds, getSavedWebcamIds } from "../utils/localStorage";
 import CategoryMenu from "../components/CategoryMenu";
 // import SortDropdown from "../components/SortDropdown";
 import { useStoreContext } from "../utils/GlobalState";
+import { AwesomeButton } from "react-awesome-button";
+import "react-awesome-button/dist/styles.css";
+import ViewWebcam from "./ViewWebcam";
 
 const SearchWebcams = () => {
   const [state, dispatch] = useStoreContext();
@@ -111,7 +114,6 @@ const SearchWebcams = () => {
                 <Card.Body>
                   <Card.Title>{webcam.title}</Card.Title>
                   <Link
-                    target="_blank"
                     to={{
                       pathname: "/view",
                       state: {
@@ -123,7 +125,7 @@ const SearchWebcams = () => {
                     Live View
                   </Link>
                   {Auth.loggedIn() && (
-                    <Button
+                    <AwesomeButton
                       disabled={savedWebcamIds?.some(
                         (savedWebcamId) => savedWebcamId === webcam.webcamId
                       )}
@@ -135,7 +137,7 @@ const SearchWebcams = () => {
                       )
                         ? "This webcam has been saved!"
                         : "Save this Webcam!"}
-                    </Button>
+                    </AwesomeButton>
                   )}
                 </Card.Body>
               </Card>
